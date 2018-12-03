@@ -27,23 +27,31 @@ public class Runner {
        }
        return arr;
     }
+
+    public static void printarr(int [] arr)
+    {
+        for( int i:arr)
+        {
+            System.out.println(i);
+        }
+    }
     public static void main(String[] args) {
-        SortCompetition team1 = new Team12SortCompetition();
+        SortCompetition team12 = new Team12SortCompetition();
         int[] ranIntArr = randomIntsArr(10000);
         String[] randStringArr=randomStringArr(10000,5);
 
 
         System.out.println("Unsorted");
-        System.out.print(ranIntArr);
+        printarr(ranIntArr);
 
         long time=System.currentTimeMillis();
-        int median=team1.challengeOne(ranIntArr);
+        int median=team12.challengeOne(ranIntArr);
         time=System.currentTimeMillis()- time;
-        System.out.println("Challenge one Time Taken:" + time*0.001+"Seconds");
-        System.out.println("Median equals: "+ median);
+        System.out.println("\n\tChallenge one Time Taken:" + time*0.001+"Seconds");
+        System.out.println("\n\tMedian equals: "+ median);
 
         System.out.println("Sorted");
-        System.out.print(ranIntArr);
+        printarr(ranIntArr);
 
     }
 }
