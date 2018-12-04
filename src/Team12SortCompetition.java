@@ -81,8 +81,9 @@ public class Team12SortCompetition extends SortCompetition {
                 arr[j] = temp;
             }
         }
-        arr[right] = arr[i + 1];
-        arr[i + 1] = pivot;
+        int temp=arr[i+1];
+        arr[i+1]=arr[right];
+        arr[right] = temp;
         return i + 1;
     }
 
