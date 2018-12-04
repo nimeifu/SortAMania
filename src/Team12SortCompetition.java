@@ -2,17 +2,25 @@ public class Team12SortCompetition extends SortCompetition {
 
     @Override
     public int challengeOne(int[] arr) {
-        int left=arr[0];
+        int left=arr[1];
+        int mid=arr[(arr.length-1)/2];
         int right=arr[arr.length-1];
+        int[] temp=new int[]{};
 
 
-       quickSort(arr,left,right);
+       merge(arr,left,mid,right,temp);
        return median(arr);
     }
 
     @Override
     public int challengeTwo(String[] arr, String query) {
-        return 0;
+        bubbleSort(arr);
+
+        for(int i=0;i<arr.length;i++)
+        {
+            return (arr[i].compareTo(query));
+        }
+        return -2;
     }
 
     @Override
@@ -32,22 +40,57 @@ public class Team12SortCompetition extends SortCompetition {
 
     @Override
     public String greeting() {
-        return null;
+        return "Team12,hello guys";
     }
 
-    public static void bubbleSort(String[] list1)
+    public void merge(int[] arr,int left,int mid,int right,int[] temp)
+    {
+        int i=left;
+        int j=mid+1;
+        int k=left;
+
+        while(i<=mid && j<=right)
+        {
+            if(arr[i]<arr[j])
+            {
+                temp[k]=arr[i];
+            }
+            else{
+                temp[k]=temp[j];
+            }
+            k++;
+        }
+        while(i<= mid)
+        {
+            temp[k]=arr[i];
+            i++;
+            k++;
+        }
+        while(j<=right)
+        {
+            temp[k]=arr[i];
+            i++;
+            k++;
+        }
+        for (int x=i;i<j;x++)
+        {
+            arr[x]=temp[x];
+        }
+    }
+
+    public static void bubbleSort(String[] arr)
     {
         int swaps=1;
         while(swaps !=0)
         {
-            for(int i=0;i<list1.length;i++)
+            for(int i=0;i<arr.length;i++)
             {
-                if (list1[i].compareTo(list1[i+1])>0)
+                if (arr[i].compareTo(arr[i+1])>0)
                 {
-                    String first=list1[i];
-                    String second=list1[i+1];
-                    list1[i]=second;
-                    list1[i+1]=first;
+                    String first=arr[i];
+                    String second=arr[i+1];
+                    arr[i]=second;
+                    arr[i+1]=first;
                 }
                 swaps++;
             }
@@ -92,8 +135,8 @@ public void quickSort(int[] arr,int left,int right) {
     if (left < right) {
         int pivot =partition(arr, left, right);
 
-        quickSort(arr, left, pivot - 1);
-        quickSort(arr, pivot + 1, right);
+        quickSort(arr,left,pivot-1);
+        quickSort(arr,pivot + 1,right);
     }
 }
 

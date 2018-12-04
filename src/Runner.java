@@ -35,8 +35,18 @@ public class Runner {
             System.out.println(i);
         }
     }
+    public static void printString(String[]arr)
+    {
+        for(String i:arr)
+        {
+            System.out.println(i);
+        }
+    }
     public static void main(String[] args) {
+
         SortCompetition team12 = new Team12SortCompetition();
+        String greeting=team12.greeting();
+        System.out.println(greeting);
         int[] ranIntArr = randomIntsArr(10000);
         String[] randStringArr=randomStringArr(10000,5);
 
@@ -49,9 +59,9 @@ public class Runner {
         time=System.currentTimeMillis()- time;
         System.out.println("\n\tChallenge one Time Taken:" + time*0.001+"Seconds");
         System.out.println("\n\tMedian equals: "+ median);
-
         System.out.println("Sorted");
         printarr(ranIntArr);
+
 
     }
 }
