@@ -2,13 +2,7 @@ public class Team12SortCompetition extends SortCompetition {
 
     @Override
     public int challengeOne(int[] arr) {
-        int left=arr[1];
-        int mid=arr[(arr.length-1)/2];
-        int right=arr[arr.length-1];
-        int[] temp=new int[]{};
-
-
-       merge(arr,left,mid,right,temp);
+        mergeSort(arr);
        return median(arr);
     }
 
@@ -18,9 +12,13 @@ public class Team12SortCompetition extends SortCompetition {
 
         for(int i=0;i<arr.length;i++)
         {
-            return (arr[i].compareTo(query));
+            if(arr[i].equals(query))
+            {
+
+                return (i);
+            }
         }
-        return -2;
+        return -1;
     }
 
     @Override
@@ -43,7 +41,29 @@ public class Team12SortCompetition extends SortCompetition {
         return "Team12,hello guys";
     }
 
-    public void merge(int[] arr,int left,int mid,int right,int[] temp)
+
+
+
+
+    public static void mergeSort(int[] arr)
+    {
+        int n = arr.length;
+        int[] temp = new int[n];
+        mergeSortHelper(arr, 0, n-1, temp);
+    }
+
+
+    private static void mergeSortHelper(int[] arr,
+                                        int from, int to, int[] temp) {
+        if (from < to) {
+            int middle = (from + to) / 2;
+            mergeSortHelper(arr, from, middle, temp);
+            mergeSortHelper(arr, middle + 1, to, temp);
+            merge(arr,from,middle,to,temp);
+        }
+    }
+
+    public static void merge(int[] arr,int left,int mid,int right,int[] temp)
     {
         int i=left;
         int j=mid+1;
@@ -54,9 +74,11 @@ public class Team12SortCompetition extends SortCompetition {
             if(arr[i]<arr[j])
             {
                 temp[k]=arr[i];
+                i++;
             }
             else{
                 temp[k]=temp[j];
+                j++;
             }
             k++;
         }
@@ -68,11 +90,13 @@ public class Team12SortCompetition extends SortCompetition {
         }
         while(j<=right)
         {
-            temp[k]=arr[i];
-            i++;
+            temp[k]=arr[j];
+            j++;
             k++;
+
         }
-        for (int x=i;i<j;x++)
+
+        for (int x=left;x<=right;x++)
         {
             arr[x]=temp[x];
         }
@@ -83,7 +107,8 @@ public class Team12SortCompetition extends SortCompetition {
         int swaps=1;
         while(swaps !=0)
         {
-            for(int i=0;i<arr.length;i++)
+            swaps=0;
+            for(int i=0;i<arr.length-1;i++)
             {
                 if (arr[i].compareTo(arr[i+1])>0)
                 {
@@ -91,8 +116,8 @@ public class Team12SortCompetition extends SortCompetition {
                     String second=arr[i+1];
                     arr[i]=second;
                     arr[i+1]=first;
+                    swaps++;
                 }
-                swaps++;
             }
         }
     }
