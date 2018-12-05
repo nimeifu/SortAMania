@@ -23,13 +23,16 @@ public class Team12SortCompetition extends SortCompetition {
 
     @Override
     public int challengeThree(int[] arr) {
-        return 0;
-    }
+        mergeSort(arr);
+        return median(arr);
 
+    }
+// give up the rest of the challenges.
     @Override
     public int challengeFour(int[][] arr) {
         return 0;
     }
+
 
     @Override
     public int challengeFive(Comparable[] arr, Comparable query) {
@@ -138,6 +141,17 @@ public class Team12SortCompetition extends SortCompetition {
             arr[minIndex] = temp;
         }
     }
+
+    public void quickSort(int[] arr,int left,int right) {
+
+        if (left < right) {
+            int pivot =partition(arr, left, right);
+
+            quickSort(arr,left,pivot -1);
+            quickSort(arr,pivot + 1,right);
+        }
+    }
+
     public int partition ( int[] arr, int left, int right){
         int pivot = arr[right];
         int i = arr[left - 1];
@@ -155,15 +169,6 @@ public class Team12SortCompetition extends SortCompetition {
         return i + 1;
     }
 
-public void quickSort(int[] arr,int left,int right) {
-
-    if (left < right) {
-        int pivot =partition(arr, left, right);
-
-        quickSort(arr,left,pivot-1);
-        quickSort(arr,pivot + 1,right);
-    }
-}
 
 
 

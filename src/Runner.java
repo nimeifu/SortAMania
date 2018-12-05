@@ -49,8 +49,8 @@ public class Runner {
         String greeting=team12.greeting();
         System.out.println(greeting);
         int[] ranIntArr = randomIntsArr(10000);
-        String[] randStringArr=randomStringArr(10000,5);
-        String query=randStringArr[0];
+        //String[] randStringArr=randomStringArr(10000,5);
+        //String query=randStringArr[0];
 
 
         System.out.println("Unsorted");
@@ -58,15 +58,15 @@ public class Runner {
 
         long time=System.currentTimeMillis();
         int median=team12.challengeOne(ranIntArr);
-        int compare=team12.challengeTwo(randStringArr,query);
+        //int compare=team12.challengeTwo(randStringArr,query);
         time=System.currentTimeMillis()- time;
         System.out.println("\n\tChallenge one Time Taken:" + time*0.001+"Seconds");
-       // System.out.println("\n\tMedian equals: "+ median);
-        System.out.println(compare);
-        System.out.println(query);
+        System.out.println("\n\tMedian equals: "+ median);
+        //System.out.println(compare);
+        //System.out.println(query);
         System.out.println("Sorted");
-        //printarr(ranIntArr);
-        printString(randStringArr);
+        printarr(ranIntArr);
+        //printString(randStringArr);
 
 
     }
